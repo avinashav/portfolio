@@ -14,27 +14,64 @@
         body, h1,h2,h3,h4,h5,h6 {
             font-family: "Montserrat", sans-serif
         }
-        
         .w3-row-padding img {
             margin-bottom: 12px
         }
-        
             /* Set the width of the sidebar to 120px */
         .w3-sidebar {
-                        width: 120px;background: #222;
-                    }
-
+            width: 120px;background: #222;
+        }
             /* Add a left margin to the "page content" that matches the width of the sidebar (120px) */
         #main {
-                margin-left: 120px
-            }
-
+            margin-left: 120px
+        }
             /* Remove margins from "page content" on small screens */
         @media only screen and (max-width: 600px) {
             #main {
                 margin-left: 0
             }
         }
+        
+        /* The Modal (background) for pop-up greeting box after contacting admin */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            padding-top: 100px; /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+
+        /* Modal Content */
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+
+        /* The Close Button */
+        .close {
+            color: #aaaaaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        
+        /* The Model End */
     </style>
 
     
@@ -75,7 +112,7 @@
     <a href="#about" class="w3-bar-item w3-button" style="width:25% !important">ABOUT</a>
     <a href="./photos.html" class="w3-bar-item w3-button" style="width:25% !important">PHOTOS</a>
     <a href="#projects" class="w3-bar-item w3-button" style="width:25% !important">PROJECTS</a>
-    <a href="#contact" class="w3-bar-item w3-button" style="width:25% !important">CONTACT</a>
+  <!--  <a href="#contact" class="w3-bar-item w3-button" style="width:25% !important">CONTACT</a>   -->
   </div>
 </div>
 
@@ -128,8 +165,8 @@
           </div>
       </div>
 
-      <a href="cv.html"><button class="w3-button w3-light-grey w3-padding-large w3-section">
-          <i class="fa fa-download" aria-hidden="true"></i>View Resume
+      <a href="cv.html"><button class="w3-button w3-teal w3-padding-large w3-section">
+          <i class="fa fa-file-text-o" aria-hidden="true"></i> <b>View Resume</b>
           </button></a>
 
       <!--
@@ -221,22 +258,130 @@
         
         <div class="w3-section">
             <p><i class="fa fa-map-marker fa-fw w3-text-white w3-xxlarge w3-margin-right"></i>38/A, Vishveshwarya Nagara, Mysore, Karnataka, India</p>
-            <!--<p><i class="fa fa-phone fa-fw w3-text-white w3-xxlarge w3-margin-right"></i> Phone:  </p> -->
+            <p><i class="fa fa-phone fa-fw w3-text-white w3-xxlarge w3-margin-right"></i> Phone: <a href="tel:+918217312563">+91 8217312563</a> </p>
             <p><i class="fa fa-envelope fa-fw w3-text-white w3-xxlarge w3-margin-right"> </i> Email: <a href="mailto:avinash.softs@gmail.com">avinash.softs@gmail.com</a></p>
         </div><br>
         <p>Lets get in touch. Send me a message:</p>
 
-        <form action="/action_page.php" target="_blank">
-            <p><input class="w3-input w3-padding-16" type="text" placeholder="Name" required name="Name"></p>
-            <p><input class="w3-input w3-padding-16" type="text" placeholder="Email" required name="Email"></p>
-            <p><input class="w3-input w3-padding-16" type="text" placeholder="Subject" required name="Subject"></p>
-            <p><input class="w3-input w3-padding-16" type="text" placeholder="Message" required name="Message"></p>
+        <form action="https://formcarry.com/s/B1QjmzNbQ"  onsubmit="return checkform(this);" method="POST" accept-charset="UTF-8" >
+            <p><input class="w3-input w3-padding-16" type="text" name="firstName" placeholder="Name" required name="Name"></p>
+            <p><input class="w3-input w3-padding-16" type="email" name="email" placeholder="Email" required name="Email"></p>
+            <p><input class="w3-input w3-padding-16" type="text" name="subject" placeholder="Subject" required name="Subject"></p>
+            <p><input class="w3-input w3-padding-16" type="text" name="message" placeholder="Message" required name="Message"></p>
+            
+            <!-- START CAPTCHA -->
+            <br>
+            <div class="capbox">
+                <div id="CaptchaDiv"></div>
+                <div class="capbox-inner">
+                    Type the above number:<br>
+
+                    <input type="hidden" id="txtCaptcha">
+                    <input type="text" name="CaptchaInput" id="CaptchaInput" size="15"><br>
+                    
+                </div>
+            </div>
+            <br><br>
+            <!-- END CAPTCHA -->
+
+            <!-- Trigger/Open The Modal POP-UP to greet the message sender -->
             <p>
-                <button class="w3-button w3-light-grey w3-padding-large" type="submit">
+                <button class="w3-button w3-light-grey w3-padding-large" type="submit" id="myBtn">
                     <i class="fa fa-paper-plane"></i> SEND MESSAGE
                 </button>
             </p>
+            <!-- The Modal -->
+            <div id="myModal" class="modal">
+
+                <!-- Modal content -->
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <p>Thank you for your valuable response.</p>
+                </div>
+
+            </div>
+            
+            <script>
+                // Get the modal
+                var modal = document.getElementById('myModal');
+
+                // Get the button that opens the modal
+                var btn = document.getElementById("myBtn");
+
+                // Get the <span> element that closes the modal
+                var span = document.getElementsByClassName("close")[0];
+
+                // When the user clicks the button, open the modal 
+                btn.onclick = function() {
+                    modal.style.display = "block";
+                }
+
+                // When the user clicks on <span> (x), close the modal
+                span.onclick = function() {
+                    modal.style.display = "none";
+                }
+
+                // When the user clicks anywhere outside of the modal, close it
+                window.onclick = function(event) {
+                    if (event.target == modal) {
+                        modal.style.display = "none";
+                    }
+                }
+            </script>
         </form>
+        
+        <script type="text/javascript">
+
+            // Captcha Script
+
+            function checkform(theform){
+                var why = "";
+
+                if(theform.CaptchaInput.value == ""){
+                    why += "- Please Enter CAPTCHA Code.\n";
+                }
+                if(theform.CaptchaInput.value != ""){
+                    if(ValidCaptcha(theform.CaptchaInput.value) == false){
+                        why += "- The CAPTCHA Code Does Not Match.\n";
+                    }
+                }
+                if(why != ""){
+                    alert(why);
+                    return false;
+                }
+            }
+
+            var a = Math.ceil(Math.random() * 9)+ '';
+            var b = Math.ceil(Math.random() * 9)+ '';
+            var c = Math.ceil(Math.random() * 9)+ '';
+            var d = Math.ceil(Math.random() * 9)+ '';
+            var e = Math.ceil(Math.random() * 9)+ '';
+
+            var code = a + b + c + d + e;
+            document.getElementById("txtCaptcha").value = code;
+            document.getElementById("CaptchaDiv").innerHTML = code;
+
+            // Validate input against the generated number
+            function ValidCaptcha(){
+                var str1 = removeSpaces(document.getElementById('txtCaptcha').value);
+                var str2 = removeSpaces(document.getElementById('CaptchaInput').value);
+                if (str1 == str2){
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            }
+
+            // Remove the spaces from the entered and generated code
+            function removeSpaces(string){
+                return string.split(' ').join('');
+            }
+            
+        </script>
+        <!-- End Capcha Checking -->
+        
+        
         <!-- End Contact Section -->
     </div>
   
