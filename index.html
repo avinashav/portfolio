@@ -260,19 +260,22 @@
         <hr style="width:200px" class="w3-opacity">
         
         <div class="w3-section">
-            <p><i class="fa fa-map-marker fa-fw w3-text-white w3-xxlarge w3-margin-right"></i>38/A, Vishveshwarya Nagara, Mysore, Karnataka, India</p>
+            <p><i class="fa fa-map-marker fa-fw w3-text-white w3-xxlarge w3-margin-right"></i>38/A, Vishveshwarya Nagara, Mysore, Karnataka, India - 570008</p>
             <p><i class="fa fa-phone fa-fw w3-text-white w3-xxlarge w3-margin-right"></i> Phone: <a href="tel:+918217312563">+91 8217312563</a> </p>
             <p><i class="fa fa-envelope fa-fw w3-text-white w3-xxlarge w3-margin-right"> </i> Email: <a href="mailto:avinash.softs@gmail.com">avinash.softs@gmail.com</a></p>
         </div><br>
         <p>Lets get in touch. Send me a message:</p>
 
-        <form action="https://formcarry.com/s/B1QjmzNbQ"  onsubmit="return checkform(this);" method="POST" accept-charset="UTF-8" >
+        
+        <form action="https://formcarry.com/s/B1QjmzNbQ" method="POST" accept-charset="UTF-8" >     
+            <!-- FOR CAPCHA : ADD ATTRIBUTE onsubmit="return checkform(this);"   NEXT TO action="" -->
             <p><input class="w3-input w3-padding-16" type="text" name="firstName" placeholder="Name" required name="Name"></p>
             <p><input class="w3-input w3-padding-16" type="email" name="email" placeholder="Email" required name="Email"></p>
             <p><input class="w3-input w3-padding-16" type="text" name="subject" placeholder="Subject" required name="Subject"></p>
             <p><input class="w3-input w3-padding-16" type="text" name="message" placeholder="Message" required name="Message"></p>
-            
-            <!-- START CAPTCHA -->
+   
+<!--            
+            <!-- START CAPTCHA --/>
             <br>
             <div class="capbox">
                 <div id="CaptchaDiv"></div>
@@ -285,8 +288,8 @@
                 </div>
             </div>
             <br><br>
-            <!-- END CAPTCHA -->
-
+            <!-- END CAPTCHA --/>
+-->
             <!-- Trigger/Open The Modal POP-UP to greet the message sender -->
             <p>
                 <button class="w3-button w3-light-grey w3-padding-large" type="submit" id="myBtn">
@@ -304,7 +307,7 @@
 
             </div>
             
-            <script>
+           <script>
                 // Get the modal
                 var modal = document.getElementById('myModal');
 
@@ -331,8 +334,9 @@
                     }
                 }
             </script>
+
         </form>
-        
+ <!--       
         <script type="text/javascript">
 
             // Captcha Script
@@ -382,10 +386,11 @@
             }
             
         </script>
-        <!-- End Capcha Checking -->
+        <!-- End Capcha Checking --/>
         
         
         <!-- End Contact Section -->
+
     </div>
   
     <!-- Footer -->
