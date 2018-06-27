@@ -8,8 +8,8 @@ You can scroll to my resume to see my education, projects and work experiences.
 Unlike a standard resume document, the website makes it easy for me to include logos and clickable links that allow my skills to shine brighter.
 
 
-**Thank You,
+Thank You,
 
-Avinash Kumar
+**Avinash Kumar **
 
-[www.avinashkr.tk](http://avinashkr.tk) **
+[http://avinashkr.tk](http://avinashkr.tk)
